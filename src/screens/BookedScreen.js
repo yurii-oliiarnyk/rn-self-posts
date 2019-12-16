@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { DATA } from '../data';
-import Post from '../components/Post';
 import AppHeaderIcon from '../components/AppHeaderIcon';
+import PostList from '../components/PostList';
 
 const BookedScreen = props => {
   const { navigation } = props;
@@ -17,42 +16,24 @@ const BookedScreen = props => {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <FlatList
-        data={DATA.filter(post => post.booked)}
-        keyExtractor={post => post.id.toString()}
-        renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
-      />
-    </View>
+    <PostList
+      data={DATA.filter(post => post.booked)}
+      onOpen={openPostHandler}
+    />
   );
 };
 
-BookedScreen.navigationOptions = {
+BookedScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Вибрані',
-  headerRight: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item
-        title="Take photo"
-        iconName="ios-camera"
-        onPress={() => console.log('Press camera')}
-      />
-    </HeaderButtons>
-  ),
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
         title="Toggle Drawer"
         iconName="ios-menu"
-        onPress={() => console.log('Press camera')}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   )
-};
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: 10
-  }
 });
 
 export default BookedScreen;

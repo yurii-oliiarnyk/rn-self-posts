@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { DATA } from '../data';
-import Post from '../components/Post';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import AppHeaderIcon from '../components/AppHeaderIcon';
+import PostList from '../components/PostList';
 
 const MainScreen = props => {
   const { navigation } = props;
@@ -16,43 +15,33 @@ const MainScreen = props => {
     });
   };
 
-  return (
-    <View style={styles.wrapper}>
-      <FlatList
-        data={DATA}
-        keyExtractor={post => post.id.toString()}
-        renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
-      />
-    </View>
-  );
+  return <PostList data={DATA} onOpen={openPostHandler} />;
 };
 
-MainScreen.navigationOptions = {
-  headerTitle: 'Мій блог',
-  headerRight: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item
-        title="Take photo"
-        iconName="ios-camera"
-        onPress={() => console.log('Press camera')}
-      />
-    </HeaderButtons>
-  ),
-  headerLeft: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item
-        title="Toggle Drawer"
-        iconName="ios-menu"
-        onPress={() => console.log('Press camera')}
-      />
-    </HeaderButtons>
-  )
-};
+MainScreen.navigationOptions = props => {
+  const { navigation } = props;
 
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: 10
-  }
-});
+  return {
+    headerTitle: 'Мій блог',
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="Take photo"
+          iconName="ios-camera"
+          onPress={() => navigation.push('Create')}
+        />
+      </HeaderButtons>
+    ),
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="Toggle Drawer"
+          iconName="ios-menu"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    )
+  };
+};
 
 export default MainScreen;
