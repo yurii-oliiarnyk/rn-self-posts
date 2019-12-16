@@ -9,6 +9,10 @@ const PostScreen = props => {
   );
 };
 
+PostScreen.navigationOptions = {
+  headerTitle: 'Пост 42'
+};
+
 const styles = StyleSheet.create({
   center: {
     flex: 1,
