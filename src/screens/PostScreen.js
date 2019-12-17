@@ -12,6 +12,7 @@ import {
 import { Item, HeaderButtons } from 'react-navigation-header-buttons';
 import AppHeaderIcon from '../components/AppHeaderIcon';
 import { toogleBooked, removePost } from '../store/actions/post';
+import { THEME } from '../theme';
 
 const PostScreen = props => {
   const { navigation } = props;
@@ -32,8 +33,8 @@ const PostScreen = props => {
   }, [booked]);
 
   const toggleHandler = useCallback(() => {
-    dispatch(toogleBooked(postId));
-  }, [dispatch, postId]);
+    dispatch(toogleBooked(post));
+  }, [dispatch, post]);
 
   useEffect(() => {
     navigation.setParams({ toggleHandler });
@@ -66,7 +67,11 @@ const PostScreen = props => {
       <View style={styles.textWrap}>
         <Text style={styles.title}>{post.text}</Text>
       </View>
-      <Button title="Видалити" onPress={removeHandler} />
+      <Button
+        title="Видалити"
+        onPress={removeHandler}
+        color={THEME.DANGER_COLOR}
+      />
     </ScrollView>
   );
 };
