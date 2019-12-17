@@ -37,7 +37,7 @@ export const DATA = [
       'https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg',
     text: 'Awesome text for post 5',
     date: new Date().toJSON(),
-    booked: false
+    booked: true
   },
   {
     id: '6',
