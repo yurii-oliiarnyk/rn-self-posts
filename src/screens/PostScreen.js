@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Item, HeaderButtons } from 'react-navigation-header-buttons';
 import AppHeaderIcon from '../components/AppHeaderIcon';
-import { toogleBooked } from '../store/actions/post';
+import { toogleBooked, removePost } from '../store/actions/post';
 
 const PostScreen = props => {
   const { navigation } = props;
@@ -48,10 +48,17 @@ const PostScreen = props => {
       {
         text: 'Видалити',
         style: 'destructive',
-        onPress: () => console.log('Ask me later pressed')
+        onPress: () => {
+          navigation.navigate('Main');
+          dispatch(removePost(postId));
+        }
       }
     ]);
   };
+
+  if (!post) {
+    return null;
+  }
 
   return (
     <ScrollView>
