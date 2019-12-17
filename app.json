@@ -18,7 +18,14 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yurii-oliiarnyk.self-blog-rn-app",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.yurii_oliiarnyk.self_blog_rn_app",
+      "versionCode": 1,
+      "permissions": ["CAMERA", "CAMERA_ROLL", "WRITE_EXTERNAL_STORAGE"]
     }
   }
 }

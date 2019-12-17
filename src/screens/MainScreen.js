@@ -42,7 +42,7 @@ MainScreen.navigationOptions = props => {
   const { navigation } = props;
 
   return {
-    headerTitle: 'Мій блог',
+    headerTitle: 'Мій блог!',
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
